@@ -1,11 +1,26 @@
 {
   "name": "social-network-17",
-  "module": "index.ts",
+  "main": "server.js",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0",
+    "@types/mongoose": "^5.11.97",
+    "nodemon": "^3.1.9"
   },
+  "scripts": {
+        "build": "npx tsc",
+        "start": "bun dist/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "render-build": "npm install && npm run build",
+        "render-start": "npm run seed && npm run start"
+    },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
   }
 }

@@ -1,27 +1,44 @@
 {
-  "compilerOptions": {
-    // Enable latest features
-    "lib": ["ESNext", "DOM"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
-
-    // Bundler mode
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-
-    // Best practices
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "compilerOptions": {
+      /* Language and Environment */
+      "target": "ES2021",  // Target modern JS features
+      "rootDir": "src",     // Specify the root folder within your source files
+      "outDir": "dist",     // Specify an output folder for all emitted files
+      "types": ["bun"],     // Only include Bun types, avoid Node types to prevent conflicts
+      
+      /* Modules */
+      "module": "ESNext",               // Use ES Modules for compatibility with Bun
+      "moduleResolution": "Node",        // Resolve modules like Node.js does
+      
+      /* JavaScript Support */
+      "allowJs": true,                  // Allow JavaScript files in the project
+      "checkJs": true,                  // Enable error reporting for JS files
+      
+      /* Interop Constraints */
+      "esModuleInterop": true,          // Ensures compatibility with CommonJS
+      "allowSyntheticDefaultImports": true, // Allows default imports for CommonJS modules
+      "forceConsistentCasingInFileNames": true, // Ensures file names are correctly cased
+      
+      /* Type Checking */
+      "strict": true,                    // Enable all strict type-checking options
+      "noUnusedLocals": true,            // Report unused local variables
+      "noUnusedParameters": true,        // Report unused function parameters
+      "noFallthroughCasesInSwitch": true, // Disallow fallthrough in switch statements
+      "exactOptionalPropertyTypes": true, // Treat optional properties as exactly written
+      "noImplicitReturns": true,         // Ensure functions return explicitly
+      "noImplicitOverride": true,        // Ensure overriding methods are marked with `override`
+      "useUnknownInCatchVariables": true, // Ensure `unknown` is used in `catch` clauses
+      
+      /* Skip Library Checking */
+      "skipLibCheck": true,  // Skip checking conflicting types from node_modules
+      
+      /* Module Path Options */
+      "baseUrl": ".",        // Set the base directory for module resolution
+      "paths": {             // Set path aliases if necessary
+        "@src/*": ["src/*"]
+      }
+    },
+    "include": ["src/**/*"],  // Include all files from the 'src' folder
+    "exclude": ["node_modules"] // Exclude node_modules
   }
-}
+  
