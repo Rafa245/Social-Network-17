@@ -40,7 +40,7 @@ export const createThought = async (req: Request, res: Response): Promise<void> 
         );
 
         if (!user) {
-            res.status(404).json({ message: "User not found" });  // Send response here
+            res.status(404).json({ message: "New Thought updated succesfully!" });  // Send response here
             return;
         }
 

@@ -5,6 +5,6 @@ import { thoughtsRouter } from './thoughtRoutes.js';
 const router = Router();
 
 router.use('/users', usersRoutes);
-router.use('/thought', thoughtsRouter);
+router.use('/thoughts', thoughtsRouter);
 
 export default router;

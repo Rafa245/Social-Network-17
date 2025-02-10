@@ -68,7 +68,7 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
             res.status(404).json({ message: 'User not found' });  // Send response here
             return;  // No need to return the response object
         }
-        res.json({ message: 'User and thoughts successfully deleted' });  // Send response here
+        res.json({ message: 'User successfully deleted' });  // Send response here
     } catch (err: any) {
         console.log(err);
         res.status(500).json({ message: err.message });  // Send error response

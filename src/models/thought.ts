@@ -1,20 +1,22 @@
 import { Schema, Types, model, type Document } from 'mongoose';
 
 interface IReaction extends Document {
-    reactionId: Schema.Types.ObjectId,
+    reactionId: Types.ObjectId;
     reactionBody: string;
-    username: string,
-    createdAt: Date,
+    username: string;
+    createdAt: Date;
 }
 
 interface IThought extends Document {
-    thoughtText: string, 
-    createdAt: Date,
-    username: string, 
-    
-    reactions?: IReaction[], 
-    
+    thoughtText: string;
+    createdAt: Date;
+    username: string;
+    reactions?: IReaction[];
+
+    // Virtual field
+    reactionCount?: number;
 }
+
 const reactionSchema = new Schema<IReaction>(
     {
         reactionId: {
@@ -23,7 +25,7 @@ const reactionSchema = new Schema<IReaction>(
         },
         reactionBody: {
             type: String,
-            required: true, 
+            required: true,
             maxlength: 128,
         },
         username: {
@@ -40,32 +42,39 @@ const reactionSchema = new Schema<IReaction>(
         toJSON: { getters: true },
         _id: false,
     }
-)
+);
 
 const thoughtSchema = new Schema<IThought>(
     {
         thoughtText: {
-            type: String, 
+            type: String,
             required: true,
             minlength: 1,
             maxlength: 128,
         },
-        createdAt:{
+        createdAt: {
             type: Date,
-            default: Date.now, 
+            default: Date.now,
             get: (timestamp: Date) => new Date(timestamp),
         },
         username: {
             type: String,
-            // ref: "User",
             required: true,
         },
         reactions: [reactionSchema],
     },
     {
-        toJSON: { getters: true },
+        toJSON: { 
+            virtuals: true, // Enable virtuals to be included in JSON output
+            getters: true 
+        },
     }
 );
+
+// 🔹 Add virtual for total reaction count
+thoughtSchema.virtual('reactionCount').get(function (this: IThought) {
+    return this.reactions ? this.reactions.length : 0;
+});
 
 const Thought = model<IThought>('Thought', thoughtSchema);
 
